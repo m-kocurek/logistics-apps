@@ -1,37 +1,102 @@
-<!DOCTYPE html>
 <html>
 <head>
-	<title> JOP & KOCUREK LOGISTICS </title>
-	<link rel="stylesheet" type="text/css" href=" {{url_for('static', filename='styles/style.css')}} ">
-</head> 
+        <title>Jop & Kocurek Logistics</title>
+        <link rel="stylesheet"  href="static/style.css">
+</head>
+
+
+<link rel="stylesheet" href="/static/style.css" >
+
+<style>
+
+.content{
+    width: 100%;
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    text-align: center;
+    color: #fff;   
+}
+
+.content-table{
+    top: 50%;
+    transform: translateY(-10%);
+   display: inline-block;
+ 
+    border: 1px solid #fff; /* solid daje bez srodkowych lini tabele*/
+    color:aqua;
+    border-collapse: collapse ; /*pojedyncza kreska w tabeli */
+    margin: 25px 0;
+    font-size: 0.9 cm;
+    width: 70%;
+ } 
+
+th,td{ 
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+    padding: 15px; /* odstepy  */
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+}
+
+tr:nth-child(even) {
+    background-color: #6a8d91;
+}
+
+th {
+  background-color: #31c4b5;
+  color: white;
+}
+
+</style>
+
 <body>
-	<header>
-		<div class="main">
-			<div class="logo">
-			<img src="static/logo.png">
-			</div>
-			<ul>
-				<li class="active"><a href="/home">Home</a></li>
-				<li><a href="/posrednik">Posrednik</a></li>
-				<li><a href="/inny">Drugi projekt?</a></li>
-			</ul>	
-</header>
-		<table>
-		<thread>
-		<tr>
-		<th>1st column</th>
-		<th>2nd column</th>
-		</tr>
-		</thead>
-		<tbody>	
-		{%for arr in array %}
-		<tr>
-		<td>{{arr[0]}}</td>
-		<td>{{arr[1]}}</td>
-		</tr>
-		{% endfor %}
-		</tbody>
-		</table>
-	
+        <div class="banner">
+            <div class="navbar">
+              <img src="static/logo.png" class="logo">
+              <ul>
+                 <li> <a href="/home">Home</a> </li>
+                 <li> <a href="/posrednik">Zagadnienie Pośrednika</a> </li>
+                 <li> <a href="/sieci">Zagadnienie Sieciowe</a> </li>
+             </ul>
+            </div>
+        
+        
+        <div class="content">
+          <h1> Tabela1 </h1>
+             <table class="content-table">
+                <thead>
+                    <tr>
+                        <th>1 kolumna</th>
+                        <th>2 kolumna</th>
+                        <th>3 kolumna</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>11</td>
+                        <td>12</td>
+                        <td>13</td>
+                    </tr>
+                    <tr>
+                        <td>21</td>
+                        <td>22</td>
+                        <td>23</td>
+                    </tr>
+                    <tr>
+                        <td>31</td>
+                        <td>32</td>
+                        <td>33</td>
+                    </tr>
+
+                </tbody>
+              </table>  
+
+        </div>
+</div>
+
 </body>
 </html>
