@@ -1,26 +1,51 @@
-<!DOCTYPE html>
 <html>
 <head>
-	<title> JOP & KOCUREK LOGISTICS </title>
-	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/style.css')}}">
-</head> 
-<body>
-	<header>
-		<div class="main">
-			<div class="logo">
-			<img src="static/logo.png">
-			</div>
-			<ul>
-				<li class="active"><a href="/home">Home</a></li>
-				<li><a href="/posrednik">Posrednik</a></li>
-				<li><a href="/inny">Drugi projekt?</a></li>
-			</ul>	
-		<div>
-		<div class="title">
-		<h1>JOP & KOCUREK LOGISTICS</h1>
-		</div>
+        <title>Jop & Kocurek Logistics</title>
+        <link rel="stylesheet"  href="static/style.css">
+</head>
+<link rel="stylesheet" href="/static/style.css" >
+<style>
 
-	
-	</header>
+.content{
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    color: #fff;   
+}
+
+.content h1{
+    color: #fff;
+    font-size: 70px;
+    margin-top: 80px;
+}
+
+.content p{ 
+    color:#fff;
+    margin: 20px auto;
+    font-weight: 100;
+    line-height: 25px;
+ } 
+</style>
+
+<body>
+        <div class="banner">
+            <div class="navbar">
+              <img src="static/logo.png" class="logo">
+              <ul>
+                 <li> <a href="/home">Home</a> </li>
+                 <li> <a href="/posrednik">Zagadnienie Pośrednika</a> </li>
+                 <li> <a href="/sieci">Zagadnienie Sieciowe</a> </li>
+             </ul>
+            </div>
+
+            <div class="content">
+                <h1>Badania Operacyjne i Logistyka</h1>
+                <p>Ćwiczenia projektowe</p>
+            </div>   
+
+        </div>
+
 </body>
 </html>
