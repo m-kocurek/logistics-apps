@@ -11,24 +11,25 @@
 
 .content{
     width: 100%;
-    position: absolute;
-    top: 40%;
+    position: relative; /* absolute; */
+    top: 35%;
     transform: translateY(-50%);
     text-align: center;
     color: #fff;   
 }
 
 .content-table{
-    top: 50%;
+   /* top: 50%;*/
+    position: relative;
+    top: 1cm;
     transform: translateY(-10%);
-   display: inline-block;
- 
+    display: inline-block;
     border: 1px solid #fff; /* solid daje bez srodkowych lini tabele*/
     color:aqua;
     border-collapse: collapse ; /*pojedyncza kreska w tabeli */
     margin: 25px 0;
     font-size: 0.9 cm;
-    width: 70%;
+    width: 30%;
  } 
 
 th,td{ 
@@ -55,7 +56,7 @@ th {
 <body>
         <div class="banner">
             <div class="navbar">
-              <img src="static/logo.png" class="logo">
+              <img src="static/logo2.png" class="logo">
               <ul>
                  <li> <a href="/home">Home</a> </li>
                  <li> <a href="/posrednik">Zagadnienie Pośrednika</a> </li>
@@ -65,35 +66,77 @@ th {
         
         
         <div class="content">
-          <h1> Tabela1 </h1>
+         
+            <h1> Tabela zysków jednostkowych </h1>
+          
+            <table class="content-table">
+               <thead>
+                   <tr>
+                       <th>            </th>
+                       <th>Odbiorca #1</th>
+                       <th>Odbiorca #2</th>
+                   </tr>
+               </thead>
+               <tbody>
+                   <tr>
+                       <td>Dostawca #1</td>
+                       <td>{{rows}}</td>
+                       <td>{{zmienna}}</td>                      
+                   </tr>
+                   <tr>
+                       <td>Dostawca #2</td>
+                       <td>21</td>
+                       <td>22</td>                       
+                   </tr>
+                   <tr>
+                       <td>Dostawca #3</td>
+                       <td>31</td>
+                       <td>32</td>                      
+                   </tr>
+                   <tr>
+                       <td>Dostawca #4</td>
+                       <td>41</td>
+                       <td>42</td>
+                   </tr>
+               </tbody>
+             </table>
+             
+             <h1> Tabela optymalnych przewozów </h1>
              <table class="content-table">
-                <thead>
-                    <tr>
-                        <th>1 kolumna</th>
-                        <th>2 kolumna</th>
-                        <th>3 kolumna</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr>
-                        <td>11</td>
-                        <td>12</td>
-                        <td>13</td>
-                    </tr>
-                    <tr>
-                        <td>21</td>
-                        <td>22</td>
-                        <td>23</td>
-                    </tr>
-                    <tr>
-                        <td>31</td>
-                        <td>32</td>
-                        <td>33</td>
-                    </tr>
-
-                </tbody>
-              </table>  
+               <thead>
+                   <tr>
+                       <th>            </th>
+                       <th>Odbiorca #1</th>
+                       <th>Odbiorca #2</th>
+                   </tr>
+               </thead>
+               <tbody>                  
+                   <tr>
+                       <td>Dostawca #1</td>
+                       <td>11</td>
+                       <td>12</td>
+                   </tr>
+                   <tr>
+                       <td>Dostawca #2</td>
+                       <td>21</td>
+                       <td>22</td>
+                   </tr>
+                   <tr>
+                       <td>Dostawca #3</td>
+                       <td>31</td>
+                       <td>32</td>
+                   </tr>
+                   <tr>
+                       <td>Dostawca #4 </td>
+                       <td>41</td>
+                       <td>42</td>
+                   </tr>
+                  
+               </tbody>
+             </table>  
+             <h3> Zysk pośrednika: {{zysk_posrd}} </h3>
+             <h3> Całkowity koszt: {{calk_koszt}} </h3>
+             <h3> Całkowity przychód: {{calk_przychod}} </h3>
 
         </div>
 </div>
