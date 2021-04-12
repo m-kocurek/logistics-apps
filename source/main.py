@@ -1,7 +1,10 @@
-import sort, road, zysk
+import sort, road, zysk, max_min, find_cycle, new_road, iteration, block_road
 
 ld = 2 # docelowo 4
 lo = 3 # docelowo 2
+
+#ld = 4
+#lo = 2
 
 
 z = [[0 for x in range(lo)] for y in range(ld)] # jednostkowy zysk
@@ -12,8 +15,8 @@ kt = [[0 for x in range(lo)] for y in range(ld)] # koszty jednostkowego transpor
 popyt = [0 for x in range(lo)]
 podaz = [0 for x in range(ld)]
 
-beta = [0 for x in range(lo)]
-alfa = [0 for x in range(ld)]
+#beta = [0 for x in range(lo)] #po ustaleniu czy mamy fikcyjnych dostawcow/odbiorcow czy nie tworze nowe alfa i beta
+#alfa = [0 for x in range(ld)]
 
 jk = [[0 for x in range(lo)] for y in range(ld)]
 
@@ -23,6 +26,14 @@ podaz = [20, 30]
 kt = [[8,14,17], [12,9,19]]
 kz = [10, 12]
 c = [30, 25, 30]
+
+
+#popyt = [20, 40]
+#podaz = [16, 12, 24, 15]
+
+#kt = [[4, 8], [7, 10], [2, 9], [1, 3]]
+#kz = [5, 4, 8, 7]
+#c = [12, 15]
 
 
 for i in range(0, ld):
@@ -48,6 +59,10 @@ for i in podaz:
 #print ("calkowita podaz %d" % suma2)
 
 
+#blokowanie tras
+M = [2, 2]
+
+
 if suma1 != suma2:
     nz = [[0 for x in range(lo+1)] for y in range(ld+1)] # wprowadzam fikcyjnego odbiorcę i dostawcę
     for i in range(0, ld+1):
@@ -58,6 +73,7 @@ if suma1 != suma2:
                 nz[i][j] = 0
             else:
                 nz[i][j] = z[i][j]
+    nz[M[0]][M[1]] = -9999 #ustawiam blokade
     popyt.append(suma2)
     podaz.append(suma1)
     #for row in nz:
@@ -66,37 +82,36 @@ if suma1 != suma2:
     lo = lo + 1
     ld = ld + 1
 
+#beta = [0 for x in range(lo)]
+#alfa = [0 for x in range(ld)]
+
 #obliczanie trasy za pomoca metody maksymalnego elementu macierzy
 
 sorted = sort.sortowanie_babelkowe(z, lo, ld)
+#sorted_r = sort.sortowanie_babelkowe(r, lo, ld)
 #print(sorted)
 
-r = road.calc_road(sorted, lo, ld, popyt, podaz)
+#r = road.calc_road(sorted, lo, ld, popyt, podaz) #opcja bez blokowania tras
+
+#zmienna = get_alfa_beta.alfa_beta(sorted_r, r, z, ld, lo)
+
+#blokowanie tras
+r = block_road.calc_road(sorted, lo, ld, popyt, podaz, M, z)
 
 for row in r:
     print(' '.join([str(elem) for elem in row]))
+#for row in z: 
+    #print(' '.join([str(elem) for elem in row]))
 
 #obliczanie zysku
 
-zysk = zysk.zysk(z, r, lo, ld)
-print("zysk %d" % zysk)
+zyski = [zysk.calc_zysk(z, r, lo, ld)]
+print("\nzysk_1: %d" % zyski[0])
 
 #obliczanie zmiennych dualnych
 
-alfa[0] = 0
-i, j = 0, 0
+profit = iteration.calc_iteration(r, z, lo, ld, zyski)
 
-if r[i][j] != 0:
-    if i == 0:
-        beta[j] = z[i][j] - alfa[0]
-    print("beta_0 %d" % beta[j])
 
-if r[i][j] != 0:
-    if beta[i] != 0:
-        beta[j] = z[i][j] - alfa[0]
-    print("beta_0 %d" % beta[j])
-
-#beta[0] = r[0][0] - alfa[0]
-#for i in range(ld):
-#    for j in range(lo):
-#        zysk += z[i][j]*r[i][j]
+rows = len(profit)
+print("maksymalny zysk: %d" % profit[rows-1])
