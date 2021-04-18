@@ -21,7 +21,7 @@ def calc_iteration(r, z, lo, ld, profit):
 
     for i in range(ld):
         for j in range(lo):
-            if r[i][j] > 10:
+            if r[i][j] > 0:
                 cycle[i][j] = 0
             else:
                 cycle[i][j] = z[i][j] - alfa[i] - beta[j]
@@ -33,13 +33,28 @@ def calc_iteration(r, z, lo, ld, profit):
     #for row in cycle:
     #    print(' '.join([str(elem) for elem in row]))
 
+
+    bv_positions = [[None, None, None]]
+    k = 0
+    for i in range(ld):
+        for j in range(lo):
+            if cycle[i][j] == 0:
+                if bv_positions[0][0] == None:
+                    bv_positions[0][0] = cycle[i][j]
+                    bv_positions[0][1] = i
+                    bv_positions[0][2] = j
+                else:
+                    bv_positions.append([cycle[i][j], i, j])
+
+
+
     if maksimum[0] > 0:
 
         y = maksimum[1]  # ld
         x = maksimum[2]  # lo
 
-        dane = [[cycle[y][x], y, x]]
-        track = find_cycle.find(cycle, dane, lo, ld, x, y)
+        ev_position = [cycle[y][x], y, x]
+        track = find_cycle.get_loop(bv_positions, ev_position)
 
         r = new_road.calc_new_road(track, r)
 
@@ -49,11 +64,5 @@ def calc_iteration(r, z, lo, ld, profit):
 
         profit.append(zysk.calc_zysk(z, r, lo, ld))
 
-        #niepotrzebne
-        #if zyski != profit:
-        #    zyski_tab.append(zyski)
-        #    calc_iteration(r, z, lo, ld, zyski, zyski_tab)
-
 
     return profit
-

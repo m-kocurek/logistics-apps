@@ -1,246 +1,80 @@
-import find_the_same
-def find(cycle, track, lo, ld, x, y):
+def get_loop(bv_positions, ev_position):
+    def inner(track):
+        if len(track) > 3:
+            nodes_tab = get_nodes(track, [ev_position])
+            can_be_closed = len(nodes_tab)==1
+            if can_be_closed: return track
 
-    while True:
-        rows = len(track)
+        k = len(bv_positions)
+        not_visited = check_visited(bv_positions, track, k)
+        possible_next_nodes = get_nodes(track, not_visited)
 
-        if rows < 2:
-            if x < (lo - 1):
-                dane = right(cycle, lo, ld, x, y)
+        for new_node in possible_next_nodes:
+            track.append(new_node)
+            new_track = inner(track)
+            if new_track: return new_track
+    return inner([ev_position])
 
-                if find_the_same.find(track, dane) == False:
+def check_visited(bv_position, track, k):
 
-                    track.append([dane[0], dane[1], dane[2]])
-                    find(cycle, track, lo, ld, track[rows][2], track[rows][1])
-                    # print("value = %d  y = %d  x = %d" % (track[rows][0], track[rows][1], track[rows][2]))
+    zmienna = False
+    lenght = len(track)
+    not_visit = [[None, None, None]]
+    for i in range(k):
+        for j in range(lenght):
+            if bv_position[i][0] == track[j][0] and bv_position[i][1] == track[j][1] and bv_position[i][2] == track[j][2]:
+                    zmienna = True
                     break
 
-            if y < (ld - 1):
-                dane = down(cycle, lo, ld, x, y)
+        if zmienna == False:
+            if not_visit[0][0] == None:
+                not_visit[0][0] = bv_position[i][0]
+                not_visit[0][1] = bv_position[i][1]
+                not_visit[0][2] = bv_position[i][2]
+            else:
+                not_visit.append([bv_position[i][0], bv_position[i][1], bv_position[i][2]])
 
-                if find_the_same.find(track, dane) == False:
-                    track.append([dane[0], dane[1], dane[2]])
-                    # print("value = %d  y = %d  x = %d" % (track[rows][0], track[rows][1], track[rows][2]))
-                    find(cycle, track, lo, ld, track[rows][2], track[rows][1])
-                    break
-
-            if x > 0:
-                dane = left(cycle, lo, ld, x, y)
-
-                if find_the_same.find(track, dane) == False:
-                    track.append([dane[0], dane[1], dane[2]])
-                    # print("value = %d  y = %d  x = %d" % (track[rows][0], track[rows][1], track[rows][2]))
-                    find(cycle, track, lo, ld, track[rows][2], track[rows][1])
-                    break
-
-            if y > 0:
-                dane = up(cycle, lo, ld, x, y)
-
-                if find_the_same.find(track, dane) == False:
-                    track.append([dane[0], dane[1], dane[2]])
-                    # print("value = %d  y = %d  x = %d" % (track[rows][0], track[rows][1], track[rows][2]))
-                    find(cycle, track, lo, ld, track[rows][2], track[rows][1])
-                    break
-
-        else:
-            # gdy oba sa pionowo to szukamy poziomo
-            if track[rows-1][2] == track[rows-2][2]:
-
-                if rows > 3:
-                    dane = [track[rows-1][0], track[rows-1][1], track[rows-1][2]]
-                    first = [track[0][0], track[0][1], track[0][2]]
-                    if dane[1] == first[1]:
-                        if first[2] > dane[2]:
-                            check = right_end(cycle, track, lo, ld, x, y)
-                            if check == True:
-                                break
-                        else:
-                            check = left_end(cycle, track, lo, ld, x, y)
-                            if check == True:
-                                break
+        zmienna = False
 
 
-                if x < (lo-1):
-                    dane = right(cycle, lo, ld, x, y)
-
-                    #gdy znalazło mi znowu ostatni element sprawdam czy w tym wierszu nie konczymy obliczen
-                    if find_the_same.find(track,dane) == True:
-                        check = right_end(cycle, track, lo, ld, x, y)
-                        if check == True:
-                            break
-                        #else:
-                        #    track.pop()
-
-                    else:
-                        track.append([dane[0], dane[1], dane[2]])
-                        find(cycle, track, lo, ld, track[rows][2], track[rows][1])
-                        #print("value = %d  y = %d  x = %d" % (track[rows][0], track[rows][1], track[rows][2]))
-                        break
-
-
-
-                if x > 0:
-                    dane = left(cycle, lo, ld, x, y)
-
-                    if find_the_same.find(track, dane) == True:
-                        check = left_end(cycle, track, lo, ld, x, y)
-                        if check == True:
-                            break
-
-                    else:
-                        track.append([dane[0], dane[1], dane[2]])
-                        # print("value = %d  y = %d  x = %d" % (track[rows][0], track[rows][1], track[rows][2]))
-                        find(cycle, track, lo, ld, track[rows][2], track[rows][1])
-                        break
-
-            elif track[rows - 1][1] == track[rows - 2][1]:
-
-                if rows > 3:
-                    dane = [track[rows-1][0], track[rows-1][1], track[rows-1][2]]
-                    first = [track[0][0], track[0][1], track[0][2]]
-                    if dane[2] == first[2]:
-                        if first[1] > dane[1]:
-                            check = down_end(cycle, track, lo, ld, x, y)
-                            if check == True:
-                                break
-                        else:
-                            check = up_end(cycle, track, lo, ld, x, y)
-                            if check == True:
-                                break
-
-
-                if y < (ld-1):
-                    dane = down(cycle, lo, ld, x, y)
-
-                    if find_the_same.find(track, dane) == True:
-                        check = down_end(cycle, track, lo, ld, x, y)
-                        if check == True:
-                            break
-
-                    else:
-                        track.append([dane[0], dane[1], dane[2]])
-                        #print("value = %d  y = %d  x = %d" % (track[rows][0], track[rows][1], track[rows][2]))
-                        find(cycle, track, lo, ld, track[rows][2], track[rows][1])
-                        break
-
-
-                if y > 0:
-                    dane = up(cycle, lo, ld, x, y)
-
-                    if find_the_same.find(track, dane) == True:
-                        check = up_end(cycle, track, lo, ld, x, y)
-                        if check == True:
-                            break
-
-                    else:
-                        track.append([dane[0], dane[1], dane[2]])
-                        #print("value = %d  y = %d  x = %d" % (track[rows][0], track[rows][1], track[rows][2]))
-                        find(cycle, track, lo, ld, track[rows][2], track[rows][1])
-                        break
-
-
-    return track
-
-
-def right(cycle, lo, ld, x, y):
-
-    dane = [cycle[y][x], y, x]
-    while x < lo-1:
-        x = x + 1
-        if cycle[y][x] == 0:
-            dane = [cycle[y][x], y, x]
-            #break
-
-    return dane
-
-def right_end(cycle, track, lo, ld, x, y):
-
-    first = [track[0][0], track[0][1], track[0][2]]
-    zmienna = False
-    while x < lo - 1:
-        x = x + 1
-        if cycle[y][x] == first[0] and y == first[1] and x == first[2]:
-            zmienna = True
-            break
-
-    return zmienna
+    return not_visit
 
 
 
 
-def down(cycle, lo, ld, x, y):
+def get_nodes(track, not_visited):
 
-    licznik = 0
-    dane = [cycle[y][x], y, x]
-    while y < (ld-1):
-        y = y + 1
-        if cycle[y][x] == 0:
-            dane = [cycle[y][x], y, x]
-            licznik += 1
-            if licznik == 2:
-                break
+    rows = len(track)
 
-    return dane
+    last_node = [track[rows-1][0], track[rows-1][1], track[rows-1][2]]
 
+    lenght = len(not_visited)
 
-def down_end(cycle, track, lo, ld, x, y):
+    nodes_in_rows = [[]]
+    nodes_in_columns = [[]]
 
-    first = [track[0][0], track[0][1], track[0][2]]
-    zmienna = False
-    while y < (ld-1):
-        y = y + 1
-        if cycle[y][x] == first[0] and y == first[1] and x == first[2]:
-            zmienna = True
-            break
+    for i in range(lenght):
+        if not_visited[i][1] == last_node[1]:
+            nodes_in_rows.append([not_visited[i][0], not_visited[i][1], not_visited[i][2]])
+    nodes_in_rows.reverse()
+    nodes_in_rows.pop()
+    nodes_in_rows.reverse()
 
-    return zmienna
+    for i in range(lenght):
+        if not_visited[i][2] == last_node[2]:
+            nodes_in_columns.append([not_visited[i][0], not_visited[i][1], not_visited[i][2]])
+    nodes_in_columns.reverse()
+    nodes_in_columns.pop()
+    nodes_in_columns.reverse()
 
 
-def left(cycle, lo, ld, x, y):
+    if len(track) < 2:
+        k = len(nodes_in_columns)
+        for i in range(k):
+            nodes_in_rows.append([nodes_in_columns[i][0], nodes_in_columns[i][1], nodes_in_columns[i][2]])
+        return nodes_in_rows
 
-    dane = [cycle[y][x], y, x]
-    while x > 0:
-        x = x - 1
-        if cycle[y][x] == 0:
-            dane = [cycle[y][x], y, x]
-            #break
-
-    return dane
-
-
-def left_end(cycle, track, lo, ld, x, y):
-
-    first = [track[0][0], track[0][1], track[0][2]]
-    zmienna = False
-    while x > 0:
-        x = x - 1
-        if cycle[y][x] == first[0] and y == first[1] and x == first[2]:
-            zmienna = True
-            break
-
-    return zmienna
-
-
-def up(cycle, lo, ld, x, y):
-
-    dane = [cycle[y][x], y, x]
-    while y > 0:
-        y = y - 1
-        if cycle[y][x] == 0:
-            dane = [cycle[y][x], y, x]
-            break
-
-    return dane
-
-def up_end(cycle, track, lo, ld, x, y):
-
-    first = [track[0][0], track[0][1], track[0][2]]
-    zmienna = False
-    while y > 0:
-        y = y - 1
-        if cycle[y][x] == first[0] and y == first[1] and x == first[2]:
-            zmienna = True
-            break
-
-    return zmienna
-
+    else:
+        prev_node =  [track[rows-2][0], track[rows-2][1], track[rows-2][2]]
+        if prev_node[1] == last_node[1]: return nodes_in_columns
+        return nodes_in_rows
