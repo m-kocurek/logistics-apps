@@ -30,7 +30,32 @@ def posrednik():
       tab_opt=tab_opt)
 
 
+@app.route('/sieci', methods=['GET', 'POST'])
 def logistics_method():
-    return "idk yet"
+    if request.method == 'GET':
+        return render_template('sieci.html')
+    else:
+        D_id = str(request.form['ID_d'])
+        Podaz_d = str(request.form['podaz_d'])
+        ID_p = str(request.form['ID_p'])
+        Podaz_p = str(request.form['podaz_p'])
+        ID_o = str(request.form['ID_o'])
+        Popyt_o = str(request.form['popyt_o'])
+        ID_polaczenia = str(request.form['ID_polaczenia'])
+        koszty = str(request.form['koszty'])
+        warunek = str(request.form['warunek'])
+
+        lista_D_id=[]
+        lista_D_podaz=[]
+        lista_D_id.append(D_id)
+        lista_D_podaz.append(Podaz_d)
+        dlg_listy =len(lista_D_id)
+
+
+    #pobranie danych z formularza
+    # przekazanie do metody obliczeniowe
+    #zwrocenie danych i wyswietlenei wyniku w tabelach
+    zmienna ="abc"
+    return render_template("sieci.html" ,zmienna=zmienna, lista_D_id = lista_D_id , lista_D_podaz=lista_D_podaz )
 
 app.run()
