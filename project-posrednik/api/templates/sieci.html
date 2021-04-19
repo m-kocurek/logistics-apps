@@ -1,0 +1,138 @@
+<html>
+<head>
+        <title>Jop & Kocurek Logistics</title>
+        <link rel="stylesheet"  href="static/style.css">
+</head>
+<link rel="stylesheet" href="/static/style.css" >
+<style>
+
+.content{
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    color: #fff;   
+}
+
+.content h1{
+    color: #fff;
+    font-size: 70px;
+    margin-top: 80px;
+}
+
+.content p{ 
+    color:#fff;
+    margin: 20px auto;
+    font-weight: 100;
+    line-height: 25px;
+ } 
+
+ .form-group{
+    color:#fff;
+    font-size: small;
+    margin: 20px auto;
+    font-weight: 100;
+    line-height: 20px;
+
+ }
+</style>
+
+<body>
+        <div class="banner">
+            <div class="navbar">
+              <img src="static/logo2.png" class="logo">
+              <ul>
+                 <li> <a href="/home">Home</a> </li>
+                 <li> <a href="/posrednik">Zagadnienie Pośrednika</a> </li>
+                 <li> <a href="/sieci">Zagadnienie Sieciowe</a> </li>
+             </ul>
+            </div>
+
+            <div class="content">
+                <h1>Project z programowania liniowego</h1>
+                <form  action ="/sieci " method="POST">
+
+                <div class="form-group">
+                    <label>Dostawca i podaż :</label>
+                    <input type="text" class="form-control" name="ID_d"  size="3" required>
+                    <input type="text" class="form-control" name="podaz_d" size="3" required>
+                    <button type="submit" class="btn btn-primary">Dodaj</button>
+                </div>
+                <div class="form-group">
+                    <label>Punkty pośredniczące i podaż :</label>
+                    <input type="text" class="form-control" name="ID_p" size="3" >
+                    <input type="text" class="form-control" name="podaz_p"size="3" >
+                    <button type="submit" class="btn btn-primary">Dodaj</button>
+                </div>
+                <div class="form-group">
+                    <label>Odbiorcy i popyt :</label>
+                    <input type="text" class="form-control" name="ID_o" size="3"  required>
+                    <input type="text" class="form-control" name="popyt_o" size="3" required>
+                    <button type="submit" class="btn btn-primary">Dodaj</button>
+                </div>
+                <div class="form-group">
+                    <label>Połączenia i koszty :</label>
+                    <input type="text" class="form-control" name="ID_polaczenia" size="3" required>
+                    <input type="text" class="form-control" name="koszty" size="3"  required>
+                    <button type="submit" class="btn btn-primary">Dodaj</button>
+                </div>
+                <div class="form-group">
+                    <label>Warunki :</label>
+                    <input type="text" class="form-control" name="warunek" size="3">
+                    <button type="submit" class="btn btn-primary">Dodaj</button>
+                </div>
+                <div>
+                <input type="checkbox" name="Max_czy_Min" value="Minimalizcja" accesskey="a">Minimalizacja <u> </u>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Oblicz</button>
+                    <button type="submit" class="btn btn-primary">Reset</button>
+                </div> 
+                </form>
+                <!-- Lista rozwijalna (typ rozszerzony) z zaznaczoną opcją domyślną i zmniejszoną wysokością -->
+                <select name="Dostawcy" multiple size="7">
+	            <option selected>Dostawcy</option>
+	            <option> D:  Podaz:  </option>
+	           
+	           <option>D2 popyt 2</option> 
+                </select>
+
+                <select name="Posrednicy" size="7" multiple >
+                    <option selected>Posrednicy </option>
+                    <option>Tu wpisz </option>
+                </select>
+
+                <select name="Odbiorcy" size="7" multiple>
+                    <option selected>Odbiorcy</option>
+                    <option>{{zmienna}}</option>
+                    <option>{{zmienna}}</option>
+                </select>
+                <select name="Polaczenia"size="7" multiple>
+                    <option selected>Połączenia i koszty</option>
+                    <option>{{zmienna}}</option>
+                    <option>{{zmienna}}</option>
+                </select>
+
+                <select name="Warunki" size="7" multiple>
+                    <option selected>Warunki</option>
+                    <option>{{zmienna}}</option>
+                    <option>{{zmienna}}</option>
+                </select>
+                <p>Wynik {{zmienna}}</p>
+                <select name="Trasy" size="4" multiple>
+                    <option selected>Trasy-> mozna przesuwac</option>
+                    <option>{{zmienna}}</option>
+                    <option>{{zmienna}}</option>
+                    <option>{{zmienna}}</option>
+                    <option>{{zmienna}}</option>
+                    <option>{{zmienna}}</option>
+                    <option>{{zmienna}}</option>
+
+
+            </form>
+            </div> 
+        </div>
+
+</body>
+</html>
