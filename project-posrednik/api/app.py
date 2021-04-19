@@ -1,7 +1,7 @@
 import flask as Flask
 from flask import *
 import main
-
+from main import main_
 app = Flask(__name__)
 app.config["DEBUG"]=True
 
@@ -20,7 +20,7 @@ def posrednik():
     zysk_posrd=0
     calk_koszt=0
     calk_przychod=0
-    kt, tab_opt, zysk_posrd ,calk_koszt, calk_przychod =main_.main()
+    kt, tab_opt, zysk_posrd ,calk_koszt, calk_przychod =main.main_()
 
     return render_template("posrednik.html",
      calk_przychod=calk_przychod,
