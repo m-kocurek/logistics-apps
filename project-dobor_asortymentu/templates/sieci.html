@@ -1,0 +1,104 @@
+<html>
+<head>
+        <title>Jop & Kocurek Logistics</title>
+        <link rel="stylesheet"  href="static/style.css">
+
+</head>
+<link rel="stylesheet" href="/static/style.css" >
+<style>
+
+.content{
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    color: #fff;   
+}
+
+.content h1{
+    color: #fff;
+    font-size: 70px;
+    margin-top: 80px;
+}
+
+.content p{ 
+    color:#fff;
+    margin: 20px auto;
+    font-weight: 100;
+    line-height: 25px;
+ } 
+
+ .form-group{
+    color:#fff;
+    font-size: small;
+    margin: 20px auto;
+    font-weight: 100;
+    line-height: 20px;
+
+ }
+</style>
+<body>
+
+        <div class="banner">
+            <div class="navbar">
+              <img src="static/logo2.png" class="logo">
+              <ul>
+                 <li> <a href="/home">Home</a> </li>
+                 <li> <a href="/posrednik">Zagadnienie Pośrednika</a> </li>
+                 <li> <a href="/sieci">Zagadnienie Sieciowe</a> </li>
+             </ul>
+            </div>
+
+            <div class="content">
+                <h1>Project z programowania liniowego</h1>
+                <form  action ="/sieci " method="POST">
+
+                <div class="form-group">
+                        <label>Wpisz liczbę wyrobów :</label>
+                        <input type="text" class="form-control" name="liczba_wyrobow" id="liczba_wyrobow" size="3" >
+                        <button type="submit"  class="btn btn-primary">Dodaj</button>
+                </div>
+                
+                <div class="form-group">
+                    <label>Wpisz wyrob i jego cene :</label>
+                    <input type="text" class="form-control" name="wyrob_cena" size="3" >
+                    <button type="submit" class="btn btn-primary">Dodaj</button>
+                </div>
+                <div class="form-group">
+                    <label>Wpisz liczba surowcow :</label>
+                    <input type="text" class="form-control" name="liczba_surowcow"size="3" >
+                    <button type="submit" class="btn btn-primary">Dodaj</button>
+                </div>
+                <div class="form-group">
+                    <label>Wpisz liczbe ograniczen :</label>
+                    <input type="text" class="form-control" name="liczba_ograniczen"size="3">
+                    <button type="submit" class="btn btn-primary">Dodaj</button>
+                </div>
+                <div>
+                    <label> Wpisz współczynniki przy x , znak rownania    i  wartosc </label>
+                </div>
+                <div class="form-group">
+                    <label>Ograniczenia: </label>
+                    <input type="text" class="form-control" name="x1" size="3"  >
+                    <label>X1 + </label>
+                    <input type="text" class="form-control" name="x2" size="3">
+                    <label>X2 + </label>
+                    <input type="text" class="form-control" name="x3" size="3">
+                    <label>X3 + </label>
+                    <input type="text" class="form-control" name="x4" size="3">
+                    <label>X4  </label>
+                    <input type="text" class="form-control" name="znak" size="3">
+                    <input type="text" class="form-control" name="pr_strona" size="3">
+
+                    <button type="submit" class="btn btn-primary">Dodaj</button>
+                </div>
+                <div class="form-group">
+                    <button href="/sieci-wyniki" onclick="window.location=('http://127.0.0.1:5000/sieci-wyniki')" class="btn btn-primary">Oblicz</button>
+                    <a href="/sieci-wyniki">Zobacz wyniki</a>
+                </div> 
+                
+            </div> 
+        </div>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<html>
+<head>
+        <title>Jop & Kocurek Logistics</title>
+        <link rel="stylesheet"  href="static/style.css">
+</head>
+<link rel="stylesheet" href="/static/style.css" >
+<style>
+.content{
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    color: #fff;   
+}
+.content h1{
+    color: #fff;
+    font-size: 70px;
+    margin-top: 80px;
+}
+.content p{ 
+    color:#fff;
+    margin: 20px auto;
+    font-weight: 100;
+    line-height: 25px;
+ } 
+ .form-group{
+    color:#fff;
+    font-size: small;
+    margin: 20px auto;
+    font-weight: 100;
+    line-height: 20px;
+ }
+ .content a{ 
+    color:#fff;
+    margin: 20px auto;
+    font-weight: 100;
+    line-height: 25px;
+ }
+</style>
+<body>
+        <div class="banner">
+            <div class="navbar">
+              <img src="static/logo2.png" class="logo">
+              <ul>
+                 <li> <a href="/home">Home</a> </li>
+                 <li> <a href="/posrednik">Zagadnienie Pośrednika</a> </li>
+                 <li> <a href="/wpiszLW">Zagadnienie Sieciowe</a> </li>
+             </ul>
+            </div>
+            <div class="content">
+                <h1>Project z programowania liniowego</h1>
+                <form  action ="/wpiszCW" method="POST">
+
+                <div class="form-group">
+                        <label>Wpisz cenę wyrobu: </label>
+                        <input type="text" class="form-control" name="liczba" id="liczba" size="3" >
+                        <button type="submit"  class="btn btn-primary">Dodaj</button>
+                </div>
+                <div class="form-group">
+                   <!--- <button href="/sieci-wyniki" onclick="window.location=('http://127.0.0.1:5000/sieci-wyniki')" class="btn btn-primary">Oblicz</button> 
+                    <a href="/wpiszCW">Wpisz cene wyrobu</a>  -->
+                    <a href="/wpiszLS">Wpisz liczbe surowcow</a>
+                   <!---  <a href="/wpiszLOgr">Wpisz liczbe ograniczen</a>
+                    <a href="/wpiszOgraniczenie">Wpisz ograniczenie</a> -->
+                </div> 
+                
+            </div> 
+        </div>
+</body>
+</html>

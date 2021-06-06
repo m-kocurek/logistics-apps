@@ -1,0 +1,80 @@
+<html>
+<head>
+        <title>Jop & Kocurek Logistics</title>
+        <link rel="stylesheet"  href="static/style.css">
+
+</head>
+<link rel="stylesheet" href="/static/style.css" >
+<style>
+
+.content{
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    color: #fff;   
+}
+
+.content h1{
+    color: #fff;
+    font-size: 70px;
+    margin-top: 80px;
+}
+
+.content p{ 
+    color:#fff;
+    margin: 20px auto;
+    font-weight: 100;
+    line-height: 25px;
+ } 
+
+ .form-group{
+    color:#fff;
+    font-size: small;
+    margin: 20px auto;
+    font-weight: 100;
+    line-height: 20px;
+
+ }
+</style>
+<body>
+    <div class="banner">
+            <div class="navbar">
+              <img src="static/logo2.png" class="logo">
+              <ul>
+                 <li> <a href="/home">Home</a> </li>
+                 <li> <a href="/posrednik">Zagadnienie Pośrednika</a> </li>
+                 <li> <a href="/wpiszLW">Zagadnienie Sieciowe</a> </li>
+             </ul>
+            </div>
+
+            <div class="content">
+                <h1>Project z programowania liniowego</h1>
+                <form  action ="/sieci-wyniki " method="GET">
+           
+        <!-- 
+        <select name="Wyroby" multiple size="7">
+         <option selected>   Wyroby  </option>
+         <option>   </option>
+         <option> </option> 
+        </select>
+        <select name="Ograniczenia" size="7" multiple>
+            <option selected>   Ograniczenia    </option>
+            <option>{{zmienna}}</option>
+            <option>{{zmienna}}</option>
+        </select>  -->
+
+        <p>Czy optymalizacja zakończyła się sukcesem? {{wynik_opt}}</p>
+        <p>Zysk wynosi: {{zysk}}</p>
+        <p>Wartości X : {{wspolczynniki}}</p>
+       <!--- <select name="Trasy" size="4" multiple>
+            <option selected>Wyniki</option>
+            <option> X1 {{wspolczynniki[0]}}</option>
+            <option> X2 {{wspolczynniki[1]}}</option>
+        </select>  --->
+
+    </div>
+</body>
+ </html>
+    
