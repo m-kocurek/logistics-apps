@@ -193,53 +193,160 @@ def wpiszLOgr():
     return render_template("wpiszLOgr.html", zmienna=zmienna)
 
 
+################################## new method
 #wpisz ograniczenia
 @app.route('/wpiszOgraniczenie', methods=['GET','POST'])
 def wpiszOgraniczenie():
+    df=pd.read_csv('baza.txt')
+    dane = pd.DataFrame(data=df, columns=['A'] )
+    Liczba_wyrobow = int(df.iat[0,0])  
+    print(Liczba_wyrobow)
     if request.method == 'GET':
-        return render_template('wpisz_ogr.html')
-    else:
+        if(Liczba_wyrobow == 1):
+            return render_template('wpisz_ogr-1.html')
+        elif(Liczba_wyrobow == 2):
+            return render_template('wpisz_ogr-2.html')
+        elif(Liczba_wyrobow == 3):
+            return render_template('wpisz_ogr-3.html')
+        elif(Liczba_wyrobow == 4):
+            return render_template('wpisz_ogr-4.html')
         
-        x1 = str(request.form['x1'])
-        if(x1 !=0):
-            with open('baza.txt', 'a') as plik:
+    else:
+        if(Liczba_wyrobow == 1):
+           x1 = str(request.form['x1'])
+           if(x1 !=0):
+             with open('baza.txt', 'a') as plik:
                 plik.write(x1)
                 plik.write(":")
                 plik.close() 
 
-        x2 = str(request.form['x2'])
-        if(x2 !=0):
-            with open('baza.txt', 'a') as plik:
-                plik.write(x2)
-                plik.write(":")
-                plik.close() 
-        x3 = str(request.form['x3'])
-        if(x3 !=0):
-            with open('baza.txt', 'a') as plik:
-                plik.write(x3)
-                plik.write(":")
-                plik.close() 
-        x4 = str(request.form['x4'])
-        if(x4 !=0):
-            with open('baza.txt', 'a') as plik:
-                plik.write(x4)
-                plik.write(":")
-                plik.close() 
-        znka = str(request.form['znak'])
-        if(znka !=0):
-            with open('baza.txt', 'a') as plik:
-                plik.write(znka)
-                plik.write(":")
-                plik.close() 
-        pr_strona = str(request.form['pr_strona'])
-        if(pr_strona !=0):
-            with open('baza.txt', 'a') as plik:
-                plik.write(pr_strona)
-                plik.write("\n")
-                plik.close() 
+           znka = str(request.form['znak'])
+           if(znka !=0):
+                with open('baza.txt', 'a') as plik:
+                    plik.write(znka)
+                    plik.write(":")
+                    plik.close() 
 
-    zmienna="Wpisz ograniczenia"
-    return render_template("wpisz_ogr.html", zmienna=zmienna)
+           pr_strona = str(request.form['pr_strona'])
+           if(pr_strona !=0):
+                with open('baza.txt', 'a') as plik:
+                    plik.write(pr_strona)
+                    plik.write("\n")
+                    plik.close() 
+
+        elif(Liczba_wyrobow == 2):
+            x1 = str(request.form['x1'])
+            if(x1 !=0):
+                with open('baza.txt', 'a') as plik:
+                    plik.write(x1)
+                    plik.write(":")
+                    plik.close() 
+
+            x2 = str(request.form['x2'])
+            if(x2 !=0):
+                with open('baza.txt', 'a') as plik:
+                    plik.write(x2)
+                    plik.write(":")
+                    plik.close()
+
+            znka = str(request.form['znak'])
+            if(znka !=0):
+                with open('baza.txt', 'a') as plik:
+                    plik.write(znka)
+                    plik.write(":")
+                    plik.close() 
+            pr_strona = str(request.form['pr_strona'])
+            if(pr_strona !=0):
+                with open('baza.txt', 'a') as plik:
+                    plik.write(pr_strona)
+                    plik.write("\n")
+                    plik.close() 
+
+        elif(Liczba_wyrobow == 3):
+            x1 = str(request.form['x1'])
+            if(x1 !=0):
+                with open('baza.txt', 'a') as plik:
+                    plik.write(x1)
+                    plik.write(":")
+                    plik.close() 
+
+            x2 = str(request.form['x2'])
+            if(x2 !=0):
+                with open('baza.txt', 'a') as plik:
+                    plik.write(x2)
+                    plik.write(":")
+                    plik.close() 
+            x3 = str(request.form['x3'])
+            if(x3 !=0):
+                with open('baza.txt', 'a') as plik:
+                    plik.write(x3)
+                    plik.write(":")
+                    plik.close() 
+
+            znka = str(request.form['znak'])
+            if(znka !=0):
+                with open('baza.txt', 'a') as plik:
+                    plik.write(znka)
+                    plik.write(":")
+                    plik.close() 
+            pr_strona = str(request.form['pr_strona'])
+            if(pr_strona !=0):
+                with open('baza.txt', 'a') as plik:
+                    plik.write(pr_strona)
+                    plik.write("\n")
+                    plik.close() 
+
+        elif(Liczba_wyrobow == 4):
+            
+            x1 = str(request.form['x1'])
+            if(x1 !=0):
+                with open('baza.txt', 'a') as plik:
+                    plik.write(x1)
+                    plik.write(":")
+                    plik.close() 
+
+            x2 = str(request.form['x2'])
+            if(x2 !=0):
+                with open('baza.txt', 'a') as plik:
+                    plik.write(x2)
+                    plik.write(":")
+                    plik.close() 
+            x3 = str(request.form['x3'])
+            if(x3 !=0):
+                with open('baza.txt', 'a') as plik:
+                    plik.write(x3)
+                    plik.write(":")
+                    plik.close() 
+            x4 = str(request.form['x4'])
+            if(x4 !=0):
+                with open('baza.txt', 'a') as plik:
+                    plik.write(x4)
+                    plik.write(":")
+                    plik.close() 
+
+            znka = str(request.form['znak'])
+            if(znka !=0):
+                with open('baza.txt', 'a') as plik:
+                    plik.write(znka)
+                    plik.write(":")
+                    plik.close() 
+
+            pr_strona = str(request.form['pr_strona'])
+            if(pr_strona !=0):
+                with open('baza.txt', 'a') as plik:
+                    plik.write(pr_strona)
+                    plik.write("\n")
+                    plik.close() 
+
+    if(Liczba_wyrobow == 1):
+        return render_template('wpisz_ogr-1.html')
+    elif(Liczba_wyrobow == 2):
+        return render_template('wpisz_ogr-2.html')
+    elif(Liczba_wyrobow == 3):
+        return render_template('wpisz_ogr-3.html')
+    elif(Liczba_wyrobow == 4):
+        return render_template('wpisz_ogr-4.html')
+
 
 
 #############################################################################
