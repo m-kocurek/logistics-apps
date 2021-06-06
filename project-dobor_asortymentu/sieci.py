@@ -3,14 +3,7 @@ import linecache as lc
 import pandas as pd
 
 def sieci_():
-      #TODO:
-      #- ZROBIC Z TEGO FUNKCJE
-      #OBLICZONE ARG PRZEKAZAC DO FUNCKJI W APP.PY
-      # WYSWIETLIC WYNIKI
-      #ZABIEGI UPIEKSZAJACE
-      #zmien czyszczenie pliku
-
-
+     
 ######## ODCZYT Z PLIKU #########################
 
       df=pd.read_csv('baza.txt')
