@@ -6,15 +6,10 @@ def calc_iteration(r, z, lo, ld, profit):
 
     alfa[0] = 0
 
-    for k in range(ld):
-        for i in range(lo):
-            if r[k][i] != 0:
-                if alfa[k] != None:
-                    beta[i] = z[k][i] - alfa[k]
-                    for j in range(ld):
-                        if r[j][i] != 0:
-                            if beta[i] != None:
-                                alfa[j] = z[j][i] - beta[i]
+
+    alfa1, beta1 = calc_alfa_beta(ld, lo, r, z, alfa, beta)
+    #licze drugi raz aby na pewno wszystko bylo poprawnie wyliczone
+    alfa, beta = calc_alfa_beta(ld, lo, r, z, alfa1, beta1)
 
 
     cycle = [[0 for x in range(lo)] for y in range(ld)]
@@ -29,9 +24,9 @@ def calc_iteration(r, z, lo, ld, profit):
     maksimum = max_min.find_max(cycle, lo, ld)
     #print(maksimum)
 
-    #print("\n")
-    #for row in cycle:
-    #    print(' '.join([str(elem) for elem in row]))
+    print("\ncycle")
+    for row in cycle:
+        print(' '.join([str(elem) for elem in row]))
 
 
     bv_positions = [[None, None, None]]
@@ -45,7 +40,6 @@ def calc_iteration(r, z, lo, ld, profit):
                     bv_positions[0][2] = j
                 else:
                     bv_positions.append([cycle[i][j], i, j])
-
 
 
     if maksimum[0] > 0:
@@ -63,6 +57,21 @@ def calc_iteration(r, z, lo, ld, profit):
         #    print(' '.join([str(elem) for elem in row]))
 
         profit.append(zysk.calc_zysk(z, r, lo, ld))
+        calc_iteration(r, z, lo, ld, profit)
 
 
-    return profit
+    return profit, r
+
+
+
+def calc_alfa_beta(ld, lo, r, z, alfa, beta):
+    for k in range(ld):
+        for i in range(lo):
+            if r[k][i] != 0:
+                if alfa[k] != None:
+                    beta[i] = z[k][i] - alfa[k]
+                    for j in range(ld):
+                        if r[j][i] != 0:
+                            if beta[i] != None:
+                                alfa[j] = z[j][i] - beta[i]
+    return alfa, beta

@@ -1,5 +1,6 @@
 def get_loop(bv_positions, ev_position):
     def inner(track):
+
         if len(track) > 3:
             nodes_tab = get_nodes(track, [ev_position])
             can_be_closed = len(nodes_tab)==1
@@ -9,10 +10,24 @@ def get_loop(bv_positions, ev_position):
         not_visited = check_visited(bv_positions, track, k)
         possible_next_nodes = get_nodes(track, not_visited)
 
+
         for new_node in possible_next_nodes:
+
+            if len(track) > 2:
+                if new_node[2] == track[len(track)-2][2]:
+                    track.pop()
+                    if new_node[2] == track[len(track) - 2][2]:
+                        track.pop()
+                elif new_node[1] == track[len(track)-2][1]:
+                    track.pop()
+                    if new_node[1] == track[len(track) - 2][1]:
+                        track.pop()
+
             track.append(new_node)
             new_track = inner(track)
+
             if new_track: return new_track
+
     return inner([ev_position])
 
 def check_visited(bv_position, track, k):

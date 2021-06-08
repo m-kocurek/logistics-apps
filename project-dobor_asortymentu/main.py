@@ -80,7 +80,11 @@ for i in range(lw):
 opt = linprog(c=obj, A_ub=ls_eql,  b_ub=rs_eql, A_eq=ls_eq, b_eq=rs_eq, method="revised simplex")
 
 print("\nCzy optymalizacja zakończyła się sukcesem?:   ", opt.success) #informacja czy optymalizacja przeszla pomyslnie
-print(opt.x)
+#print(opt.x)
+print("\n")
+for i in range(len(opt.x)):
+      print("wyrob %d: %.2f" %(i+1,opt.x[i]))
+
 
 
 zysk = opt.fun*(-1) #zysk koncowy

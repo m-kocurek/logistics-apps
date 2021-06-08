@@ -3,6 +3,7 @@ from flask import *
 from flask import session
 import sieci
 from sieci import sieci_
+import pandas as pd
 import flask
 from flask import Flask,request, jsonify, render_template, redirect, url_for, session
 import sys

@@ -70,10 +70,12 @@ def main_():
                     nz[i][j] = 0
                 else:
                     nz[i][j] = z[i][j]
-
+        #nz[M[0]][M[1]] = float("-inf") #ustawiam blokade
         popyt.append(suma2)
         podaz.append(suma1)
-
+        #print("\nzbilansowane")
+        #for row in nz:
+        #    print(' '.join([str(elem) for elem in row]))
         z = nz
         lo = lo + 1
         ld = ld + 1
@@ -101,6 +103,7 @@ def main_():
     # blokowanie tras
     r = block_road.calc_road(sorted, lo, ld, popyt, podaz, M, z)
 
+    print("obliczona trasa")
     for row in r:
         print(' '.join([str(elem) for elem in row]))
 
@@ -156,12 +159,12 @@ def main_():
 
     # print(calkowity_zysk)
     rows = len(profit)
+    z[M[0]][M[1]] = float("-inf")
+
+    return z, r, profit[rows - 1], kc, pc
 
 
-    return z, r, pc, kc, profit[rows - 1]
-
-
-z, r, pc, kc, max_zysk = main_()
+z, r, max_zysk, kc, pc = main_()
 
 print("\nmaksymalny zysk: %d" % max_zysk)
 print("calkowity przychod: %d" % pc)
